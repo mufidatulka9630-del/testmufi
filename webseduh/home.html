@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teh Tarik Seduh - Diseduh, Bukan Disulap</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            overflow-x: hidden;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d6080b5f-0870-48ee-982e-c4301b94d6b0.png');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+        
+        .coffee-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .coffee-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .location-card {
+            transition: transform 0.3s ease;
+        }
+        
+        .location-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .promo-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #e63946;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .anim-slide-in {
+            animation: slideIn 0.8s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .logo {
+            width: 85px;
+            height: 85px;
+            background: #224982;
+            border-radius: 10%;
+            position: relative;
+            display: inline-block;
+            margin-left: 25px; /* geser ke kanan */
+        }
+
+        
+        .coffee-bean::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #5a3928;
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="fixed w-full bg-white shadow-md z-50">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="logo"><img src="logoseduh2.jpg"></div>
+                    <!-- <span class="text-2xl font-bold text-brown-800">Teh Tarik Seduh</span> -->
+                </div>
+                
+                <!-- Menu Desktop -->
+                <div class="hidden md:flex space-x-8">
+                <a href="#video-hero" class="text-gray-700 hover:text-brown-600 font-medium">Beranda</a>
+                <a href="#menu" class="text-gray-700 hover:text-brown-600 font-medium">Menu</a>
+                <a href="#about" class="text-gray-700 hover:text-brown-600 font-medium">Tentang</a>
+                <a href="#order" class="text-gray-700 hover:text-brown-600 font-medium">Order</a>
+                <a href="#locations" class="text-gray-700 hover:text-brown-600 font-medium">Lokasi</a>
+                </div>
+
+               <!-- Tombol Mobile (hamburger) -->
+                <button id="menu-toggle" class="md:hidden text-2xl text-gray-700">
+                    <i class="fas fa-bars"></i>
+                </button>
+                </div>
+
+                <!-- Menu Mobile -->
+                <div id="mobile-menu" 
+                    class="hidden flex-col space-y-4 mt-4 bg-white shadow-md p-4 md:hidden transform scale-y-0 origin-top transition-transform duration-300 ease-out">
+                <a href="#video-hero" class="block text-gray-700 hover:text-brown-600 font-medium">Beranda</a>
+                <a href="#menu" class="block text-gray-700 hover:text-brown-600 font-medium">Menu</a>
+                <a href="#about" class="block text-gray-700 hover:text-brown-600 font-medium">Tentang</a>
+                <a href="#order" class="block text-gray-700 hover:text-brown-600 font-medium">Order</a>
+                <a href="#locations" class="block text-gray-700 hover:text-brown-600 font-medium">Lokasi</a>
+                </div>
+
+                <script>
+                const menuToggle = document.getElementById('menu-toggle');
+                const mobileMenu = document.getElementById('mobile-menu');
+
+                menuToggle.addEventListener('click', () => {
+                    if (mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.remove('hidden');
+                    setTimeout(() => {
+                        mobileMenu.classList.remove('scale-y-0');
+                        mobileMenu.classList.add('scale-y-100');
+                    }, 10);
+                    } else {
+                    mobileMenu.classList.remove('scale-y-100');
+                    mobileMenu.classList.add('scale-y-0');
+                    setTimeout(() => {
+                        mobileMenu.classList.add('hidden');
+                    }, 300); // tunggu animasi selesai
+                    }
+                });
+
+                // Auto close menu setelah klik link
+                document.querySelectorAll('#mobile-menu a').forEach(link => {
+                    link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('scale-y-100');
+                    mobileMenu.classList.add('scale-y-0');
+                    setTimeout(() => {
+                        mobileMenu.classList.add('hidden');
+                    }, 300);
+                    });
+                });
+                </script>
+
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="video-hero" class="relative">
+    <video autoplay muted loop playsinline
+            class="w-full h-[500px] md:h-[650px] object-cover">
+        <source src="awal.mp4" type="video/mp4">
+        Browser kamu tidak mendukung video.
+    </video>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Menu Favorit</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Temukan ragam pilihan minuman spesial yang siap menemani hari-hari Anda</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Coffee 1 -->
+                <div class="coffee-card bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="tehtarik.jpg" class="w-full h-auto">
+                        <div class="promo-badge">HOT</div>
+                    </div>
+                    <div class="p-6">
+                        <!-- <h3 class="text-xl font-bold text-gray-800 mb-2">Teh Tarik Authentic</h3> -->
+                        <p class="text-gray-600 mb-4">Racikan teh tarik original dengan cita rasa teh yang kuat, sedikit sepet, dan aroma wangi yang khas.</p>
+                        <div class="flex justify-between items-center">
+                            <button class="bg-brown-600 text-white px-4 py-2 rounded-lg hover:bg-brown-700 transition">
+                                Pesan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Coffee 2 -->
+                <div class="coffee-card bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="matchatarik.jpg" alt="Avocado Coffee dengan lapisan alpukat hijau dan espresso di gelas tinggi" class="w-full h-auto">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Matcha Tarik</h3>
+                        <p class="text-gray-600 mb-4">Hadir dengan aroma harum khas green tea dan rasa creamy yang menenangkan, dibuat dari teh hijau pilihan asal Thailand.</p>
+                        <div class="flex justify-between items-center">
+                            <!-- <span class="text-2xl font-bold text-brown-600">Rp 32.000</span> -->
+                            <button class="bg-brown-600 text-white px-4 py-2 rounded-lg hover:bg-brown-700 transition">
+                                Pesan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Coffee 3 -->
+                <div class="coffee-card bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="tehtarikmalaka.jpg" alt="Espresso Romano dengan lemon slice di samping cangkung kecil espresso" class="w-full h-auto">
+                        <div class="promo-badge">NEW</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Teh Tarik Malaka</h3>
+                        <!-- <p class="text-gray-600 mb-4">Terbuat dari teh hitam pilihan asal Aceh, menu ini menghadirkan cita rasa murni teh hitam yang kuat, dengan sentuhan sepet khas Aceh yang membuatnya begitu otentik dan berkarakter.</p> -->
+                        <div class="flex justify-between items-center">
+                            <!-- <span class="text-2xl font-bold text-brown-600">Rp 18.000</span> -->
+                            <button class="bg-brown-600 text-white px-4 py-2 rounded-lg hover:bg-brown-700 transition">
+                                Pesan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Coffee 4 -->
+                <div class="coffee-card bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="matchasignature.jpg" alt="Matcha Latte dengan lapisan hijau matcha dan foam susu yang artistik" class="w-full h-auto">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Matcha Signature</h3>
+                        <p class="text-gray-600 mb-4">Dibuat dari bubuk matcha pilihan dengan rasa creamy, lembut, dan tidak pahit seperti matcha rumput pada umumnya.</p>
+                        <div class="flex justify-between items-center">
+                            <!-- <span class="text-2xl font-bold text-brown-600">Rp 28.000</span> -->
+                            <button class="bg-brown-600 text-white px-4 py-2 rounded-lg hover:bg-brown-700 transition">
+                                Pesan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br> <br> <br>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Coffee 5 -->
+                <div class="coffee-card bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="menu11.jpg" class="w-full h-auto">
+                        <div class="promo-badge">HOT</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Teh Tarik Authentic</h3>
+                        <p class="text-gray-600 mb-4">Hasil seduhan sempurna yang memadukan manis lembut di awal dan kekuatan rasa yang bertahan lama di akhir.</p>
+                        <div class="flex justify-between items-center">
+                            <!-- <span class="text-2xl font-bold text-brown-600">Rp 25.000</span> -->
+                            <button class="bg-brown-600 text-white px-4 py-2 rounded-lg hover:bg-brown-700 transition">
+                                Pesan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Coffee 6 -->
+                <div class="coffee-card bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="menu22.jpg" alt="Avocado Coffee dengan lapisan alpukat hijau dan espresso di gelas tinggi" class="w-full h-auto">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Matcha Tarik</h3>
+                        <p class="text-gray-600 mb-4">Perpaduan sempurna antara alpukat creamy dengan espresso yang kuat.</p>
+                        <div class="flex justify-between items-center">
+                            <!-- <span class="text-2xl font-bold text-brown-600">Rp 32.000</span> -->
+                            <button class="bg-brown-600 text-white px-4 py-2 rounded-lg hover:bg-brown-700 transition">
+                                Pesan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Coffee 7 -->
+                <div class="coffee-card bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="menu33.jpg" alt="Espresso Romano dengan lemon slice di samping cangkung kecil espresso" class="w-full h-auto">
+                        <div class="promo-badge">NEW</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Teh Tarik Malaka</h3>
+                        <p class="text-gray-600 mb-4">Espresso klasik Italia dengan sentuhan lemon yang menyegarkan.</p>
+                        <div class="flex justify-between items-center">
+                            <!-- <span class="text-2xl font-bold text-brown-600">Rp 18.000</span> -->
+                            <button class="bg-brown-600 text-white px-4 py-2 rounded-lg hover:bg-brown-700 transition">
+                                Pesan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Coffee 8 -->
+                <div class="coffee-card bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="menu44.jpg" alt="Matcha Latte dengan lapisan hijau matcha dan foam susu yang artistik" class="w-full h-auto">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Matcha Signature</h3>
+                        <p class="text-gray-600 mb-4">Matcha premium Jepang yang dicampur dengan susu creamy untuk pengalaman menenangkan.</p>
+                        <div class="flex justify-between items-center">
+                            <!-- <span class="text-2xl font-bold text-brown-600">Rp 28.000</span> -->
+                            <button class="bg-brown-600 text-white px-4 py-2 rounded-lg hover:bg-brown-700 transition">
+                                Pesan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tombol Selengkapnya -->
+            <div class="text-center mt-10">
+            <button id="showMoreBtn" 
+                    class="bg-brown-700 text-black px-8 py-3 rounded-full font-semibold shadow-lg hover:bg-brown-800 transition">
+                Selengkapnya
+            </button>
+            </div>
+
+            <!-- Menu Lengkap (Hidden by default) -->
+            <div id="full-menu" 
+            class="opacity-0 max-h-0 overflow-hidden transition-all duration-700 ease-in-out mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Menu 1 -->
+                <div class="bg-white shadow-lg overflow-hidden relative flex items-center justify-center">
+                    <img src="allmenu.png" alt="Menu Lengkap 1" class="w-full h-auto object-contain p-4">
+                    <!-- Gradasi bawah -->
+                    <div class="absolute bottom-0 left-0 w-full h-10 bg-gradient-to-t from-gray-300 to-transparent"></div>
+                </div>
+
+                <!-- Menu 2 -->
+                <div class="bg-white shadow-lg overflow-hidden relative flex items-center justify-center">
+                    <img src="allmenu2.jpg" alt="Menu Lengkap 2" class="w-full h-auto object-contain p-4">
+                    <!-- Gradasi bawah -->
+                    <div class="absolute bottom-0 left-0 w-full h-10 bg-gradient-to-t from-gray-300 to-transparent"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <script>
+            document.getElementById("showMoreBtn").addEventListener("click", function() {
+            const menu = document.getElementById("full-menu");
+
+            // toggle tampil/sembunyi
+            if (menu.classList.contains("opacity-0")) {
+                menu.classList.remove("opacity-0", "max-h-0");
+                menu.classList.add("opacity-100", "max-h-[2000px]"); // kasih max height besar supaya konten kebuka
+                this.textContent = "Sembunyikan";
+            } else {
+                menu.classList.add("opacity-0", "max-h-0");
+                menu.classList.remove("opacity-100", "max-h-[2000px]");
+                this.textContent = "Selengkapnya";
+            }
+            });
+        </script>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-brown-50">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                <img src="aboutseduh.jpg" 
+                    alt="Interior modern coffee shop dengan barista sedang membuat kopi dan pelanggan menikmati suasana" 
+                    class="rounded-2xl shadow-lg w-4/5 mx-auto">
+                </div>
+
+                <div>
+                    <h2 class="text-4xl font-bold text-gray-800 mb-6">Cerita Di Balik Setiap Cangkir</h2>
+                    <p class="text-gray-600 mb-6">
+                        Seduh lahir dari keyakinan bahwa rasa Nusantara punya tempat istimewa di hati siapa pun. 
+                        Teh, kopi, dan gula aren bukan sekadar bahan, tapi warisan budaya yang menyatukan banyak cerita.
+                        Filosofi kami sederhana: menghadirkan minuman affordable dengan cita rasa yang dekat dengan keseharian, 
+                        namun dibawa dengan kualitas yang bisa berdiri di panggung dunia. 
+                        Kami percaya, kesederhanaan bukan penghalang untuk menjadi besar—justru dari situ lahir kekuatan yang autentik.
+                    </p>
+                    <p class="text-gray-600 mb-8">
+                        Setiap gelas Seduh adalah upaya kami memperkenalkan kekayaan rasa Nusantara. 
+                        Dari Karanganyar, ke Sragen, dan kelak ke banyak kota lain. 
+                        Visi kami jelas: membawa kehangatan minuman merakyat ini agar bisa dinikmati, dikenal, 
+                        dan dihargai di mana pun dan kalangan apapun, tanpa kehilangan akar dan jati dirinya
+                    </p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div>
+                            <div class="text-3xl font-bold text-brown-600 mb-2">500+</div>
+                            <div class="text-gray-600">Outlet di Indonesia</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-brown-600 mb-2">1M+</div>
+                            <div class="text-gray-600">Cangkir Terjual</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Section -->
+   <section id="order" class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold text-gray-800 mb-4">Order Sekarang</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">
+        Pilih outlet terdekat dan pesan dengan mudah melalui platform favorit Anda
+      </p>
+    </div>
+
+    <!-- Grid Outlet -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+      
+      <!-- Outlet Karanganyar -->
+      <div class="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition duration-500">
+        <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Outlet Karanganyar</h3>
+        <div class="flex flex-col gap-4">
+
+          <!-- ShopeeFood -->
+          <a href="https://shopeefood.co.id" target="_blank"
+             class="flex items-center justify-center bg-gradient-to-r from-white-500 to-red-500 text-white rounded-xl py-4 px-6 shadow-md hover:scale-105 hover:shadow-lg transition duration-300 ease-in-out">
+            <img src="https://www.shopeefood.co.id/_next/static/0eb2d0115d4c60e056b5b91ab1813b97.png" alt="ShopeeFood" class="w-24 h-8 mr-3">
+            <!-- <span class="text-lg font-semibold">ShopeeFood</span> -->
+          </a>
+
+          <!-- GoFood -->
+          <a href="https://gofood.co.id" target="_blank"
+             class="flex items-center justify-center bg-gradient-to-r from-white-600 to-red-700 text-white rounded-xl py-4 px-6 shadow-md hover:scale-105 hover:shadow-lg transition duration-300 ease-in-out">
+            <img src="https://i.gojekapi.com/darkroom/gofood-id/v2/images/uploads/f9546f29-23c3-4384-adf9-03bb59a89136_gofood-logo.png?auto=format" alt="GoFood" class="w-16 h-8 mr-3">
+            <!-- <span class="text-lg font-semibold">GoFood</span> -->
+          </a>
+
+          <!-- WhatsApp -->
+          <a href="https://wa.me/6289876543210" target="_blank"
+             class="flex items-center justify-center bg-gradient-to-r from-white-500 to-white-600 text-white rounded-xl py-4 px-6 shadow-md hover:scale-105 hover:shadow-lg transition duration-300 ease-in-out">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="w-8 h-8 mr-3">
+            <span class="text-lg font-semibold text-green-400">WhatsApp</span>
+          </a>
+
+        </div>
+      </div>
+
+      <!-- Outlet Karanganyar -->
+      <div class="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition duration-500">
+        <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Outlet Sragen</h3>
+        <div class="flex flex-col gap-4">
+
+          <!-- ShopeeFood -->
+          <a href="https://shopeefood.co.id" target="_blank"
+             class="flex items-center justify-center bg-gradient-to-r from-white-500 to-red-500 text-white rounded-xl py-4 px-6 shadow-md hover:scale-105 hover:shadow-lg transition duration-300 ease-in-out">
+            <img src="https://www.shopeefood.co.id/_next/static/0eb2d0115d4c60e056b5b91ab1813b97.png" alt="ShopeeFood" class="w-24 h-8 mr-3">
+            <!-- <span class="text-lg font-semibold">ShopeeFood</span> -->
+          </a>
+
+          <!-- GoFood -->
+          <a href="https://gofood.co.id" target="_blank"
+             class="flex items-center justify-center bg-gradient-to-r from-white-600 to-red-700 text-white rounded-xl py-4 px-6 shadow-md hover:scale-105 hover:shadow-lg transition duration-300 ease-in-out">
+            <img src="https://i.gojekapi.com/darkroom/gofood-id/v2/images/uploads/f9546f29-23c3-4384-adf9-03bb59a89136_gofood-logo.png?auto=format" alt="GoFood" class="w-16 h-8 mr-3">
+            <!-- <span class="text-lg font-semibold">GoFood</span> -->
+          </a>
+
+          <!-- WhatsApp -->
+          <a href="https://wa.me/6289876543210" target="_blank"
+             class="flex items-center justify-center bg-gradient-to-r from-white-500 to-white-600 text-white rounded-xl py-4 px-6 shadow-md hover:scale-105 hover:shadow-lg transition duration-300 ease-in-out">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="w-8 h-8 mr-3">
+            <span class="text-lg font-semibold text-green-400">WhatsApp</span>
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+    <!-- Location Section -->
+    <section id="locations" class="py-20 bg-gray-100">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-gray-800 mb-4">Temukan Kenangan Terdekat</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">Kami hadir di berbagai kota untuk melayani Anda dengan yang terbaik</p>
+        </div>
+        
+        <div class="flex flex-wrap justify-center gap-8">
+            <!-- Card 1 -->
+            <a href="https://maps.app.goo.gl/DKsBYMDvmNK5e9219?g_st=com.google.maps.preview.copy" target="_blank" 
+               class="location-card bg-white rounded-2xl shadow-lg p-6 w-80 aspect-square hover:shadow-2xl transition">
+                <img src="Karanganyar.jpg" 
+                     alt="Outlet Teh Tarik Seduh Karanganyar" 
+                     class="w-full h-40 object-cover rounded-xl mb-4">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Seduh Karanganyar</h3>
+                <p class="text-gray-600 mb-4 text-sm">
+                    Jalan Raya Solo Tamang Mangu, 2, Papahan, Kec. Tasikmadu, Kabupaten Karanganyar
+                </p>
+                <div class="flex items-center text-brown-600">
+                    <i class="fas fa-clock mr-2"></i>
+                    <span>14:00 - 23:00</span>
+                </div>
+            </a>
+            
+            <!-- Card 2 -->
+            <a href="https://maps.app.goo.gl/DKsBYMDvmNK5e9219?g_st=com.google.maps.preview.copy" target="_blank" 
+               class="location-card bg-white rounded-2xl shadow-lg p-6 w-80 aspect-square hover:shadow-2xl transition">
+                <img src="Sragen.jpg" 
+                     alt="Outlet Teh Tarik Seduh Karanganyar" 
+                     class="w-full h-40 object-cover rounded-xl mb-4">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Seduh Sragen</h3>
+                <p class="text-gray-600 mb-4 text-sm">
+                    
+                </p>
+                <div class="flex items-center text-brown-600">
+                    <i class="fas fa-clock mr-2"></i>
+                    <span>14:00 - 23:00</span>
+                </div>
+            </a>
+        </div>
+    </div>
+    </section>
+
+    <!-- Kritik dan Saran Section -->
+    <section id="kritik-saran" class="py-20 bg-gradient-to-r">
+    <div class="container mx-auto px-6">
+        
+        <!-- Judul -->
+        <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-gray-800 mb-4">Kritik & Saran</h2>
+        <!-- <p class="text-gray-600 mb-4 text-sm">
+            Pendapat Anda sangat berarti bagi kami untuk terus berkembang dan memberikan yang terbaik.
+        </p> -->
+        </div>
+
+        <!-- Konten Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        
+        <!-- Bagian Kiri: Barcode -->
+        <div class="flex justify-center">
+            <div class="bg-white p-6 rounded-2xl shadow-xl transform transition duration-300 hover:scale-105">
+            <img src="barcode.png" alt="Scan untuk Kritik & Saran" 
+                class="w-64 h-64 object-contain" />
+            <p class="text-center text-sm text-gray-500 mt-4">Scan barcode untuk akses cepat</p>
+            </div>
+        </div>
+
+        <!-- Bagian Kanan: Teks + Tombol -->
+        <div class="text-center lg:text-left transition duration-700 ease-out animate-fadeIn">
+            <h4 class="text-3xl font-extrabold text-gray-800 mb-4">Suara Anda Membantu Kami</h4>
+            <p class="text-gray-600 mb-4 text-sm">
+                Silakan isi formulir kritik dan saran untuk meningkatkan pelayanan dan kualitas produk kami. 
+                Setiap masukan dari Anda sangat berharga!
+            </p>
+            <a href="https://forms.gle/link-form-anda" target="_blank"
+            class="inline-block bg-gradient-to-r from-amber-600 to-yellow-700 text-white px-4 py-2 rounded-full font-semibold shadow-lg 
+                    hover:opacity-90 hover:scale-105 transition duration-300 ease-in-out">
+            Isi Formulir
+            </a>
+        </div>
+
+        </div>
+    </div>
+    </section>
+
+    <!-- Footer -->
+        <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <!-- Brand -->
+            <h2 class="text-2xl font-bold mb-4">TEH TARIK SEDUH</h2>
+
+            <!-- Slogan -->
+            <p class="text-gray-400 mb-6">Tarik Kembali Bahagiamu.</p>
+
+            <!-- Sosmed -->
+            <div class="flex justify-center space-x-6 mb-6">
+            <a href="https://www.instagram.com/tehtarikseduh?igsh=eHdmNmJ2M2k1cGJz" 
+                class="text-gray-400 hover:text-white transition text-xl">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.tiktok.com/@tehtarikseduh?_t=ZS-8xMjVfMccCt&_r=1" 
+                class="text-gray-400 hover:text-white transition text-xl">
+                <i class="fab fa-tiktok"></i>
+            </a>
+            </div>
+
+            <!-- Copyright -->
+            <div class="border-t border-gray-800 pt-6 text-gray-400">
+            <p>© 2025 Teh Tarik Seduh. All rights reserved.</p>
+            </div>
+        </div>
+        </footer>
+
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('anim-slide-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.coffee-card, .location-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Mobile menu toggle (placeholder)
+        document.querySelector('.fa-bars').addEventListener('click', function() {
+            alert('Menu mobile akan ditampilkan di sini');
+        });
+    </script>
+</body>
+</html>
